@@ -20,7 +20,6 @@ class Solution {
     public void helper(String s,String temp){
         if(s.length()==0){
             res.add(temp);
-            temp=temp.substring(0,temp.length()-1);
             return ;
             
         }
