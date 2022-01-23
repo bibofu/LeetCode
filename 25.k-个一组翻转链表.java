@@ -17,39 +17,39 @@
  */
 class Solution {
     public ListNode reverseKGroup(ListNode head, int k) {
-
+        
         ListNode cur=head;
         for(int i=0;i<k;i++){
             if(cur==null){
                 return head;
-
             }
             cur=cur.next;
-
         }
-
-        ListNode newhead=rever(head,cur);
+        
+        ListNode newhead=reverseK(head,cur);
         head.next=reverseKGroup(cur,k);
+        
         return newhead;
 
-
-
-
+    
+    
     }
-
-    public ListNode rever(ListNode a,ListNode b){
-
+    
+    public ListNode reverseK(ListNode begin,ListNode end){
         ListNode pre=null;
-        ListNode cur=a;
-        while(cur!=b){
+        ListNode cur=begin;
+        while(cur!=end){
             ListNode next=cur.next;
             cur.next=pre;
+            
             pre=cur;
             cur=next;
         }
-
+        
         return pre;
-    } 
+        
+        
+    }
 }
 // @lc code=end
 
