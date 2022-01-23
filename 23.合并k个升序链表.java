@@ -15,33 +15,32 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-
-        Queue<ListNode> queue=new PriorityQueue<>(((o1,o2)->o1.val-o2.val));
-
+        
+        //优先队列，最小的放在最前面
+        Queue<ListNode> queue=new PriorityQueue<>((o1,o2)->o1.val-o2.val);
+        
         for(ListNode node:lists){
             while(node!=null){
                 queue.offer(node);
                 node=node.next;
             }
-
         }
-
-        ListNode dummy=new ListNode(-1);
+        
+        ListNode dummy=new ListNode();
         ListNode cur=dummy;
-
+        
         while(!queue.isEmpty()){
             cur.next=queue.poll();
             cur=cur.next;
-
+            
             if(queue.isEmpty()){
                 cur.next=null;
             }
-
-            
         }
-
+        
         return dummy.next;
 
     }

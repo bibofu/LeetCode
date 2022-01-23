@@ -17,18 +17,20 @@
  */
 class Solution {
     public ListNode swapPairs(ListNode head) {
-
+        
         if(head==null||head.next==null){
             return head;
         }
+        
+      
+        
+        ListNode next=head.next;
+        ListNode newhead=next.next;
+        next.next=head;
+        head.next=swapPairs(newhead);
+        
+        return next;
 
-        ListNode temp=head.next;
-        ListNode next=temp.next;
-
-        temp.next=head;
-        head.next=swapPairs(next);
-
-        return temp;
     }
 }
 // @lc code=end
