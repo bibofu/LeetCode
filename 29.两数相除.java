@@ -8,34 +8,28 @@
 class Solution {
     public int divide(int dividend, int divisor) {
 
-        if(Math.abs(dividend)<Math.abs(divisor)){
-            return 0;
+        if(dividend==Integer.MIN_VALUE&&divisor==-1){
+            return Integer.MAX_VALUE;
         }
 
-        int flag=1;
-        if(dividend*divisor<0){
-            dividend=Math.abs(dividend);
-            divisor=Math.abs(divisor);
-            flag=-1;
+        boolean flag=(dividend>0&&divisor<0)||(dividend<0&&divisor>0);
 
+        int res=0;
 
-        }
+        long a=Math.abs((long)dividend);
+        long b=Math.abs((long)divisor);
 
-        int one=divisor;
-
-        int num=1;
-        while(divisor<dividend){
-            divisor=divisor+one;
-            if(divisor>dividend){
-                break;
+        int shift=31;
+        while(a>=b){
+            while(a<b<<shift){
+                shift--;
             }
 
-            num++;
-        }
+            a-=b<<shift;
+            res+=1<<shift;
+       }
 
-        return num*flag;
-
-
+        return flag?-res:res;
 
     }
 
