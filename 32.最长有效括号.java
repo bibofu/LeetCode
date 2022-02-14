@@ -8,27 +8,32 @@
 class Solution {
     public int longestValidParentheses(String s) {
 
-        Stack<Integer> stack=new Stack<>();
+        if(s==null||s.length()<2){
+            return 0;
+        }
+        int res=0;
 
-        stack.push(-1);
+        int length=s.length();
+        int[] dp=new int[length];// dp[i]：严格以i位置结尾，形成的有效括号子串最长长度是多少
 
-        int max=0;
+        for(int i=1;i<length;i++){
+            if(s.charAt(i)==')'){
+                int preLen=dp[i-1];
+                int pre=i-preLen-1;
+                if(pre>=0&&s.charAt(pre)=='('){
+                    dp[i]=dp[i-1]+2;
 
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i)=='('){
-                stack.push(i);
-            }else{
-                stack.pop();
-                if(stack.isEmpty()){
-                    stack.push(i);
-                }else{
-                    max=Math.max(max,i-stack.peek());
+                    if(pre-1>=0){
+                       dp[i]+=dp[pre-1];
+                    }
                 }
+                
             }
+            res=Math.max(res,dp[i]);
 
         }
 
-        return max;
+        return res;
 
     }
 }
