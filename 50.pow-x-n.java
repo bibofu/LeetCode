@@ -5,6 +5,9 @@
  */
 
 // @lc code=start
+
+//https://www.youtube.com/watch?v=g9YQyYi4IQQ
+
 class Solution {
     public double myPow(double x, int n) {
 
