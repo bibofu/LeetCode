@@ -6,32 +6,40 @@
 
 // @lc code=start
 class Solution {
+
+    List<List<Integer>> res=new ArrayList<>();
+
     public List<List<Integer>> permute(int[] nums) {
 
-        List<List<Integer>> res=new ArrayList<>();
         List<Integer> temp=new ArrayList<>();
-
-        dfs(nums,temp,res);
+        boolean[] flag=new boolean[nums.length];
+        
+        dfs(nums,flag,temp);
 
         return res;
 
     }
 
-    public void dfs(int[] nums,List<Integer> temp,List<List<Integer>> res){
+    public void dfs(int[] nums,boolean[] flag,List<Integer> temp){
         if(temp.size()==nums.length){
             res.add(new ArrayList<>(temp));
+            return ;
         }
 
         for(int i=0;i<nums.length;i++){
-            if(temp.contains(nums[i])){
+            if(flag[i]){
                 continue;
             }
 
             temp.add(nums[i]);
-            dfs(nums,temp,res);
+            flag[i]=true;
+            dfs(nums,flag,temp);
             temp.remove(temp.size()-1);
+            flag[i]=false;
         }
     }
+
+    
 }
 // @lc code=end
 

@@ -8,21 +8,16 @@
 class Solution {
     public boolean canJump(int[] nums) {
 
-        if(nums.length==1){
-            return true;
-        }
+        int lastReach=nums.length-1;
+        int n=nums.length;
 
-        int maxjump=0;
-        for(int i=0;i<nums.length;i++){
-            if(i>maxjump){
-                return false;
-
+        for(int i=n-2;i>=0;i--){
+            if(nums[i]+i>=lastReach){
+                lastReach=i;
             }
-
-            maxjump=Math.max(maxjump,i+nums[i]);
         }
 
-        return maxjump>=nums.length-1;
+        return lastReach==0;
 
     }
 }
