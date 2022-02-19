@@ -1,48 +1,44 @@
-/*
- * @lc app=leetcode.cn id=54 lang=java
- *
- * [54] 螺旋矩阵
- */
-
-// @lc code=start
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-
+        
         List<Integer> res=new ArrayList<>();
-
-        int row1=0,row2=matrix.length-1;
-        int col1=0,col2=matrix[0].length-1;
-
-        while(row1<=row2&&col1<=col2){
-            for(int i=col1;i<=col2;i++){
-                res.add(matrix[row1][i]);
+        
+        //最小行列index
+        int r1=0,c1=0;
+        
+        //最大行列index
+        int r2=matrix.length-1,c2=matrix[0].length-1;
+        
+        while(r1<=r2&&c1<=c2){
+            //从左到右
+            for(int i=c1;i<=c2;i++){
+                res.add(matrix[r1][i]);
             }
-
-            for(int i=row1+1;i<=row2;i++){
-                res.add(matrix[i][col2]);
+            
+            //从上到下
+            for(int i=r1+1;i<=r2;i++){
+                res.add(matrix[i][c2]);
             }
-
-            if(row1<row2&&col1<col2){
-                for(int i=col2-1;i>=col1;i--){
-                    res.add(matrix[row2][i]);
+                        
+            if(c1<c2&&r1<r2){
+                
+                //从右到左
+                for(int i=c2-1;i>=c1;i--){
+                    res.add(matrix[r2][i]);
                 }
 
-                for(int i=row2-1;i>row1;i--){
-                    res.add(matrix[i][col1]);
+                //从下到上
+                for(int i=r2-1;i>r1;i--){
+                    res.add(matrix[i][c1]);
                 }
             }
-
-            row1++;
-            col1++;
-            row2--;
-            col2--;
+            
+            r1++;
+            c1++;
+            r2--;
+            c2--;
         }
-
+        
         return res;
-
     }
-
-   
 }
-// @lc code=end
-

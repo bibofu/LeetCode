@@ -8,15 +8,20 @@
 class Solution {
     public int maxSubArray(int[] nums) {
 
-        int[] dp=new int[nums.length+1];
+        int n=nums.length;
 
-        dp[1]=nums[0];
-        int max=dp[1];
-        for(int i=2;i<=nums.length;i++){
-            dp[i]=Math.max(dp[i-1]+nums[i-1],nums[i-1]);
-            if(dp[i]>max){
-                max=dp[i];
+        int[] dp=new int[n];
+        dp[0]=nums[0];
+        int max=dp[0];
+
+        for(int i=1;i<n;i++){
+            if(dp[i-1]<0){
+                dp[i]=nums[i];
+            }else{
+                dp[i]=dp[i-1]+nums[i];
             }
+
+            max=Math.max(max,dp[i]);
         }
 
         return max;
