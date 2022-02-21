@@ -7,22 +7,24 @@
 // @lc code=start
 class Solution {
     public int maxProfit(int[] prices) {
-
-
-        int min_price=prices[0];
-        int max_profit=0;
-
-        for(int i=1;i<prices.length;i++){
-            if(prices[i]<min_price){
-                min_price=prices[i];
-            }
-
-            if(prices[i]-min_price>max_profit){
-                max_profit=prices[i]-min_price;
+        
+        if(prices.length==0){
+            return 0;
+        }
+        
+        int minprice=prices[0];
+        int maxprofile=0;
+        
+        int n=prices.length;
+        for(int i=1;i<n;i++){
+            if(prices[i]<=minprice){
+                minprice=prices[i];
+            }else{
+                maxprofile=Math.max(maxprofile,prices[i]-minprice);
             }
         }
-
-        return max_profit;
+        
+        return maxprofile;
 
     }
 }

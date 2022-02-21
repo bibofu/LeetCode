@@ -7,19 +7,25 @@
 // @lc code=start
 class Solution {
     public int[] plusOne(int[] digits) {
-
-        int len=digits.length;
-        for(int i=len-1;i>=0;i--){
-            digits[i]++;
-            digits[i]=digits[i]%10;
-            if(digits[i]!=0){
-                return digits;
+        
+        int n=digits.length;
+        int carry=0;
+        for(int i=n-1;i>=0;i--){
+            int temp=digits[i]+1;
+            carry=temp/10;
+            digits[i]=temp%10;
+            if(carry==0){
+                break;
             }
         }
-
-        int[] res=new int[len+1];
-        res[0]=1;
-        return res;
+        
+        if(carry==1){
+            int[] res=new int[n+1];
+            res[0]=1;
+            return res;
+        }
+        
+        return digits;
 
     }
 }
