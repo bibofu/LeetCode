@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=101 lang=java
+ * @lc app=leetcode.cn id=572 lang=java
  *
- * [101] 对称二叉树
+ * [572] 另一棵树的子树
  */
 
 // @lc code=start
@@ -21,28 +21,32 @@
  * }
  */
 class Solution {
-    public boolean isSymmetric(TreeNode root) {
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
 
         if(root==null){
+            return false;
+        }else if(helper(root,subRoot)){
             return true;
+        }else{
+            return isSubtree(root.left,subRoot)||isSubtree(root.right,subRoot);
         }
-
-        return helper(root.left,root.right);
 
     }
 
-    public boolean helper(TreeNode a,TreeNode b){
-        if(a==null&&b==null){
+    public boolean helper(TreeNode root,TreeNode subRoot){
+        if(root==null&&subRoot==null){
             return true;
         }
-        if(a==null||b==null){
-            return false;
-        }
-        if(a.val!=b.val){
+
+        if(root==null||subRoot==null){
             return false;
         }
 
-        return helper(a.left,b.right)&&helper(a.right,b.left);
+        if(root.val==subRoot.val){
+            return helper(root.left,subRoot.left)&&helper(root.right,subRoot.right);
+        }else{
+            return false;
+        }
     }
 }
 // @lc code=end
