@@ -7,24 +7,26 @@
 // @lc code=start
 class Solution {
     public int mySqrt(int x) {
-
-        if(x==0){
-            return 0;
-        }else if(x<4){
-            return 1;
-        }
-
-        long res=0;
-
-        for(long i=2;i<=x/2;i++){
-            if((i*i<=x)&&((i+1)*(i+1)>x)){
-                res=i;
-                break;
-                
+        
+        long left=1;
+        long right=x;
+        while(left<right-1){
+            long mid=left+(right-left)/2;
+            if(mid*mid==x){
+                return (int)mid;
+            }else if(mid*mid<x){
+                left=mid;
+            }else{
+                right=mid;
             }
         }
-
-        return (int)res;
+        
+        if(right*right<=x){
+            return (int)right;
+        }else{
+            return (int)left;
+        }
+        
 
     }
 }
