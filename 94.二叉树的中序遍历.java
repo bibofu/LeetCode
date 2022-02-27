@@ -33,16 +33,13 @@ class Solution {
                 cur=cur.left;
             }
 
-            TreeNode temp=stack.pop();
-            res.add(temp.val);
-            cur=temp.right;
+            cur =stack.pop();
+            res.add(cur.val);
+            cur=cur.right;
 
         }
 
         return res;
-
-        
-
     }
 }
 // @lc code=end

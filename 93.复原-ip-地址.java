@@ -6,49 +6,52 @@
 
 // @lc code=start
 class Solution {
+
+    List<String> res=new ArrayList<>();
     public List<String> restoreIpAddresses(String s) {
-
-        List<String> res=new ArrayList<>();
-
-        dfs(s,0,"",res);
+        dfs(s,0,"");
         return res;
 
+     
     }
 
-    public void dfs(String s,int n,String ip,List<String> res){
-        if(n==4&&s.length()==0){
-            res.add(ip.substring(0,ip.length()-1));
-            return;
-        }
+    public void dfs(String s,int n,String ip){
 
+        if(n==4&&s.length()==0){
+
+            res.add(ip.substring(0,ip.length()-1));
+            return ;
+        }
         if(n>4){
-            return;
+            return ;
         }
         int left=4-n;
-        if(s.length()<left||s.length()>left*3){
-            return;
+        if(s.length()<left||s.length()>3*left){
+            return ;
         }
 
         for(int i=1;i<=3;i++){
-
             if(s.length()<i){
-                return;
+                return ;
             }
 
             String part=s.substring(0,i);
-            int nums=Integer.valueOf(part);
-            if(part.length()!=String.valueOf(nums).length()){
+            int num=Integer.valueOf(part);
+            if(part.length()!=String.valueOf(num).length()){
                 return;
             }
 
-            if(nums>255){
+            if(num>255){
                 return;
             }
 
-            dfs(s.substring(i),n+1,ip+part+'.',res);
+            dfs(s.substring(i),n+1,ip+part+'.');
 
         }
+
     }
+
+   
 }
 // @lc code=end
 
