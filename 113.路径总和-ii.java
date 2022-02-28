@@ -25,26 +25,27 @@ class Solution {
 
 
     List<List<Integer>> res = new ArrayList<>();
-    List<Integer> list = new ArrayList<>();
+   
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        dfs(root, 0, targetSum);
+        List<Integer> temp=new ArrayList<>();
+
+        dfs(root,targetSum,0,temp);
+
         return res;
     }
-    public void dfs(TreeNode root, int sum, int targetSum){
-        if(root == null) return;
-        sum += root.val;
-        list.add(root.val);
-        if(sum == targetSum && root.left == null && root.right == null){
-            res.add(new ArrayList(list));
+
+    public void dfs(TreeNode root,int targetSum,int sum,List<Integer> temp){
+        if(root==null){
+            return;
         }
-        dfs(root.left, sum, targetSum);
-        dfs(root.right, sum, targetSum);
-        list.remove(list.size() - 1);
+        temp.add(root.val);
+        if(sum+root.val==targetSum&&root.left==null&&root.right==null){
+            res.add(new ArrayList<>(temp));
+        }
+        dfs(root.left,targetSum,sum+root.val,temp);
+        dfs(root.right,targetSum,sum+root.val,temp);
+        temp.remove(temp.size()-1);
     }
-
-
-
-    
 
 }
 // @lc code=end

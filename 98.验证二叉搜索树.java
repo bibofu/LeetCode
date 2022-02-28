@@ -22,27 +22,29 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-
-        return helper(root,Long.MAX_VALUE,Long.MIN_VALUE);
-
-    }
-
-    public boolean helper(TreeNode root,long max,long min){
-        if(root==null){
-            return true;
+        
+        Stack<TreeNode> stack=new Stack<>();
+        
+        TreeNode cur=root;
+        double val=-Double.MAX_VALUE;
+        while(!stack.isEmpty()||cur!=null){
+            while(cur!=null){
+                stack.push(cur);
+                cur=cur.left;
+            }
+            
+            cur=stack.pop();
+            if(cur.val<=val){
+                return false;
+            }
+            val=cur.val;
+            cur=cur.right;
+            
+            
         }
+        
+        return true;
 
-        boolean left=helper(root.left,root.val,min);
-
-        if(root.val<=min||root.val>=max){
-            return false;
-        }
-
-
-
-        boolean right=helper(root.right,max,root.val);
-
-        return left&&right;
     }
 }
 // @lc code=end
