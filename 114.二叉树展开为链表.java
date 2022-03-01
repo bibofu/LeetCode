@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=104 lang=java
+ * @lc app=leetcode.cn id=114 lang=java
  *
- * [104] 二叉树的最大深度
+ * [114] 二叉树展开为链表
  */
 
 // @lc code=start
@@ -21,15 +21,7 @@
  * }
  */
 class Solution {
-    public int maxDepth(TreeNode root) {
-        
-        if(root==null){
-            return 0;
-        }
-        
-        int left=maxDepth(root.left);
-        int right=maxDepth(root.right);
-        return Math.max(left,right)+1;
+    public void flatten(TreeNode root) {
 
     }
 }

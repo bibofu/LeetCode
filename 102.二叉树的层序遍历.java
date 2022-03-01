@@ -30,31 +30,30 @@ class Solution {
 
         Queue<TreeNode> queue=new LinkedList<>();
         queue.offer(root);
-
         while(!queue.isEmpty()){
-            int size=queue.size();
             List<Integer> temp=new ArrayList<>();
+            int size=queue.size();
             for(int i=0;i<size;i++){
-                TreeNode pop=queue.poll();
-                temp.add(pop.val);
-                
-                if(pop.left!=null){
-                    queue.offer(pop.left);
+                TreeNode node=queue.poll();
+                temp.add(node.val);
+
+                if(node.left!=null){
+                    queue.offer(node.left);
                 }
 
-                if(pop.right!=null){
-                    queue.offer(pop.right);
+                if(node.right!=null){
+                    queue.offer(node.right);
                 }
-        
+
             }
+            res.add(new ArrayList<>(temp));
 
-            res.add(temp);
         }
 
         return res;
 
-
     }
 }
+
 // @lc code=end
 

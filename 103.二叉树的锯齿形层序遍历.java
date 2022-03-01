@@ -20,46 +20,59 @@
  *     }
  * }
  */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-
+        
         List<List<Integer>> res=new ArrayList<>();
         if(root==null){
             return res;
         }
-
-        Queue<TreeNode> queue=new LinkedList<>();
-        queue.offer(root);
-        int depth=0;
-
-        while(!queue.isEmpty()){
-            int size=queue.size();
-            LinkedList<Integer> temp=new LinkedList<>();
+        
+        Queue<TreeNode> q=new LinkedList<>();
+        q.offer(root);
+        int level=0;
+        while(!q.isEmpty()){
+            int size=q.size();
+            LinkedList<Integer> l=new LinkedList<>();
             for(int i=0;i<size;i++){
-                TreeNode pop=queue.poll();
-                if(depth%2==0){
-                    temp.add(pop.val);
-
+                TreeNode node=q.poll();
+                if(level%2==0){
+                    l.add(node.val);
                 }else{
-                    temp.addFirst(pop.val);
+                    l.addFirst(node.val);
                 }
-
-                if(pop.left!=null){
-                    queue.offer(pop.left);
+                
+                if(node.left!=null){
+                    q.offer(node.left);
                 }
-
-                if(pop.right!=null){
-                    queue.offer(pop.right);
+                
+                if(node.right!=null){
+                    q.offer(node.right);
                 }
+                
             }
-
-            res.add(temp);
-            depth++;
-
+            res.add(l);
+            level++;
         }
-
+        
         return res;
-
+        
     }
 }
 // @lc code=end

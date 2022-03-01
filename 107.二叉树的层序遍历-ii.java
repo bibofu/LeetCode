@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=104 lang=java
+ * @lc app=leetcode.cn id=107 lang=java
  *
- * [104] 二叉树的最大深度
+ * [107] 二叉树的层序遍历 II
  */
 
 // @lc code=start
@@ -21,15 +21,7 @@
  * }
  */
 class Solution {
-    public int maxDepth(TreeNode root) {
-        
-        if(root==null){
-            return 0;
-        }
-        
-        int left=maxDepth(root.left);
-        int right=maxDepth(root.right);
-        return Math.max(left,right)+1;
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
 
     }
 }
