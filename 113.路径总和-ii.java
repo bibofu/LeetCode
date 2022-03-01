@@ -46,7 +46,6 @@ class Solution {
         dfs(root.right,targetSum,sum+root.val,temp);
         temp.remove(temp.size()-1);
     }
-
 }
 // @lc code=end
 

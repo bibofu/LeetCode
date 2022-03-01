@@ -32,7 +32,29 @@
  */
 class Solution {
     public TreeNode sortedListToBST(ListNode head) {
+        
+        return helper(head,null);
 
+    }
+    
+    public TreeNode helper(ListNode start,ListNode end){
+        if(start==end){
+            return null;
+        }
+        
+        //获取链表的中间节点
+        ListNode slow=start;
+        ListNode fast=slow;
+        while(fast!=end&&fast.next!=end){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        
+        TreeNode root=new TreeNode(slow.val);
+        root.left=helper(start,slow);
+        root.right=helper(slow.next,end);
+        
+        return root;
     }
 }
 // @lc code=end

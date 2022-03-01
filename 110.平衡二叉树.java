@@ -27,8 +27,8 @@ class Solution {
             return true;
         }
 
-        boolean condition=Math.abs(depth(root.left)-depth(root.right))<=1;
-        return condition&&isBalanced(root.left)&&isBalanced(root.right);
+        boolean flag=Math.abs(depth(root.left)-depth(root.right))<=1;
+        return flag&&isBalanced(root.left)&&isBalanced(root.right);
 
     }
 

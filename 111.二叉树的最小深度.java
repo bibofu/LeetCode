@@ -37,7 +37,6 @@ class Solution {
         int right=minDepth(root.right);
 
         return Math.min(left,right)+1;
-
     }
 }
 // @lc code=end
