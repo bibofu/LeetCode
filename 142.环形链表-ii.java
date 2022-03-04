@@ -18,35 +18,30 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
+        if(head==null||head.next==null){
+            return null;
+        }
         ListNode fast=head;
         ListNode slow=head;
-
         boolean flag=false;
-
         while(fast!=null&&fast.next!=null){
-            slow=slow.next;
             fast=fast.next.next;
-            if(slow==fast){
+            slow=slow.next;
+            if(fast==slow){
                 flag=true;
                 break;
             }
         }
-
-        slow=head;
-
         if(!flag){
             return null;
         }
-
-        while(fast!=slow){
+        slow=head;
+        while(slow!=fast){
             slow=slow.next;
             fast=fast.next;
         }
-
-        return slow;
-
-
         
+        return slow;
     }
 }
 // @lc code=end

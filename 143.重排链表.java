@@ -17,33 +17,29 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-
+        
         if(head==null||head.next==null||head.next.next==null){
             return ;
         }
-
-        ListNode cur=head;
-        ListNode pre=null;
-        while(cur!=null&&cur.next!=null){
-            pre=cur;
-            cur=cur.next;
-        }
-
-        ListNode next=head.next;
-
-        pre.next=null;
-        head.next=cur;
-        cur.next=next;
-        reorderList(next);
-
         
-
-
-
-
-       
-
+        ListNode cur=head;
+        ListNode next=cur.next;
+        cur.next=getLast(cur);
+        cur.next.next=next;
+        reorderList(next);
+        
     }
+    
+    public ListNode getLast(ListNode head){
+        while(head!=null&&head.next!=null&&head.next.next!=null){
+            head=head.next;
+        }
+        ListNode res=head.next;
+        head.next=null;
+        return res;
+    }
+    
+    
 }
 // @lc code=end
 
