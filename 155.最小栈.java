@@ -14,9 +14,6 @@ class MinStack {
     public MinStack() {
         this.stack1=new Stack<>();
         this.stack2=new Stack<>();
-
-
-
     }
     
     public void push(int val) {
@@ -37,21 +34,14 @@ class MinStack {
             stack1.pop();
             stack2.pop();
         }
-
-
-
     }
     
     public int top() {
-
         return stack1.peek();
-
     }
     
     public int getMin() {
-
         return stack2.peek();
-
     }
 }
 

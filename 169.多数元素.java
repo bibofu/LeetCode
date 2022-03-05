@@ -7,25 +7,23 @@
 // @lc code=start
 class Solution {
     public int majorityElement(int[] nums) {
-
-        int time=0;
-        int target=0;
-        for(int i:nums){
-
-            if(time==0){
-                target=i;
-                time++;
+        
+        int temp=nums[0];
+        int cnt=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==temp){
+                cnt++;
             }else{
-                if(target==i){
-                    time++;
-                }else{
-                    time--;
-                }
+                cnt--;
             }
-
+            
+            if(cnt==0){
+                temp=nums[i];
+                cnt=1;
+            }
         }
-
-        return target;
+        
+        return temp;
 
     }
 }
