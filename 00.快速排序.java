@@ -63,8 +63,8 @@ class Solution{
                 int index=partition(arr,lo,hi);
                 stack.push(index-1);
                 stack.push(lo);
-                stack.push(index+1);
                 stack.push(hi);
+                stack.push(index+1);
 
             }
         }
