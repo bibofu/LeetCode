@@ -27,7 +27,6 @@ class Solution {
         if(root==null){
             return res;
         }
-
         Queue<TreeNode> queue=new LinkedList<>();
         queue.offer(root);
         while(!queue.isEmpty()){
@@ -52,7 +51,6 @@ class Solution {
         }
 
         return res;
-
     }
 }
 // @lc code=end

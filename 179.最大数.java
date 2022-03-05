@@ -12,11 +12,9 @@ class Solution {
         for(int i:nums){
             heap.offer(String.valueOf(i));
         }
-
         String res="";
         while(heap.size()>0){
             res+=heap.poll();
-        
         }
 
         if(res.charAt(0)=='0'){
@@ -24,11 +22,6 @@ class Solution {
         }
 
         return res;
-        
-
-
-
-
 
     }
 }
