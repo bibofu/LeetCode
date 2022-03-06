@@ -7,21 +7,30 @@
 // @lc code=start
 class Solution {
     public int minSubArrayLen(int target, int[] nums) {
-
-        int min_len=nums.length+1;
-        int[] dp=new int[nums.length+1];
-        dp[0]=0;
-
-        for(int i=1;i<=nums.length;i++){
-            dp[i]=dp[i-1]+nums[i-1];
-            for(int j=0;j<i;j++){
-                if(dp[i]-dp[j]>=target){
-                    min_len=Math.min(i-j,min_len);
+        
+        int left=0;
+        int right=0;
+        int min=Integer.MAX_VALUE;
+        int temp=nums[0];
+        while(left<=right&&right<nums.length){
+            if(temp>=target){
+                min=Math.min(min,right-left+1);
+                if(left==right){
+                    right++;
+                }else{
+                    temp=temp-nums[left];
+                    left++;
                 }
+            }else{
+                right++;
+                if(right<nums.length){
+                    temp+=nums[right];
+                }
+               
             }
         }
-
-        return min_len==nums.length+1?0:min_len;
+        
+        return min==Integer.MAX_VALUE?0:min;
 
     }
 }
