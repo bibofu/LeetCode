@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=236 lang=java
+ * @lc app=leetcode.cn id=235 lang=java
  *
- * [236] 二叉树的最近公共祖先
+ * [235] 二叉搜索树的最近公共祖先
  */
 
 // @lc code=start
@@ -14,27 +14,26 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        
-        if(root==null){
-            return null;
-        }
-        
-        if(root==p||root==q){
+        if(root.val==p.val||root.val==q.val){
             return root;
         }
         
-        TreeNode left=lowestCommonAncestor(root.left,p,q);
-        TreeNode right=lowestCommonAncestor(root.right,p,q);
-        if(left!=null&&right!=null){
+        if(p.val<root.val&&q.val>root.val){
             return root;
         }
-        if(left!=null){
-            return left;
-        }
-        return right;
         
+        if(p.val>root.val&&q.val<root.val){
+            return root;
+        }
+        
+        if(p.val<root.val&&q.val<root.val){
+            return lowestCommonAncestor(root.left,p,q);
+        }else{
+            return lowestCommonAncestor(root.right,p,q);
+        }
     }
 }
 // @lc code=end

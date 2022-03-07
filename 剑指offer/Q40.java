@@ -18,24 +18,7 @@ public class Q40 {
 
     }
 
-    public static void getOneTime(int[] nums){
-        HashMap<Integer,Integer> map=new HashMap();
-
-        for (int i:nums){
-            if (map.containsKey(i)){
-                map.put(i,map.get(i)+1);
-            }else {
-                map.put(i,1);
-            }
-        }
-
-        for (int i:nums){
-            if (map.get(i)==1){
-                System.out.println(i);
-            }
-        }
-
-    }
+    
 
 
     /*
@@ -54,6 +37,11 @@ public class Q40 {
            return arr;
        }
 
+       // 1 1 2 2 3 4
+       //3 11
+       //4 100
+       //3^4=111
+       //两个不同的值异或后肯定有一位是1
        int[] result=new int[2];
        int res=arr[0];
 
