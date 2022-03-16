@@ -15,39 +15,34 @@ class Solution {
         
         Arrays.sort(nums);
         
-        //大胆尝试
-        for(int i=0;i<nums.length-1;i++){
+        for(int i=0;i<nums.length-2;i++){
             if(i>=1&&nums[i]==nums[i-1]){
                 continue;
             }
-            
-            //双指针
             int left=i+1;
             int right=nums.length-1;
             while(left<right){
-                int temp=nums[i]+nums[left]+nums[right];
-                if(temp<0){
-                    left++;
-                }else if(temp>0){
-                    right--;
-                }else{
+                int sum=nums[i]+nums[left]+nums[right];
+                if(sum==0){
                     while(left<right&&nums[left]==nums[left+1]){
                         left++;
                     }
-                    
                     while(left<right&&nums[right]==nums[right-1]){
                         right--;
                     }
-                    List<Integer> list=new ArrayList<>();
-                    list.add(nums[i]);
-                    list.add(nums[left]);
-                    list.add(nums[right]);
+                    
+                    List<Integer> temp=new ArrayList<>();
+                    temp.add(nums[i]);
+                    temp.add(nums[left]);
+                    temp.add(nums[right]);
+                    res.add(temp);
                     
                     left++;
                     right--;
-                    
-                    res.add(list);
-                    
+                }else if(sum>0){
+                    right--;
+                }else{
+                    left++;
                 }
             }
             
@@ -55,7 +50,6 @@ class Solution {
         }
         
         return res;
-        
         
 
     }

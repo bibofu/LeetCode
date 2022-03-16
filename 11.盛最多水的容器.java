@@ -11,6 +11,7 @@ class Solution {
         //移动较小一端的指针, 注意双指针的使用场景
         int left=0;
         int right=height.length-1;
+        
         int res=Math.min(height[left],height[right])*(right-left);
         
         while(left<right){
