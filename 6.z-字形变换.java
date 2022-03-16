@@ -7,43 +7,44 @@
 // @lc code=start
 class Solution {
     public String convert(String s, int numRows) {
-    
-        int index=0;
-        int length=s.length();
-        String[] strs=new String[numRows];
+        
+        StringBuilder[] sbs=new StringBuilder[numRows];
         for(int i=0;i<numRows;i++){
-            strs[i]="";
+            sbs[i]=new StringBuilder();
         }
-        int i;
-        int j;
         
-        while(index<length){
+        int n=s.length();
+        int index=0;
+        
+        while(index<n){
             //上到下
-            for(i=0;i<numRows;i++){
-                if(index>=length){
+            for(int i=0;i<numRows;i++){
+                sbs[i].append(s.charAt(index));
+                index++;
+                if(index>=n){
                     break;
                 }
-                strs[i]+=s.charAt(index);
-                index++;
             }
             
-            //下到上
-            for(j=numRows-2;j>0;j--){
-                if(index>=length){
+            if(index>=n){
+                break;
+            }
+            
+            for(int i=numRows-2;i>0;i--){
+                sbs[i].append(s.charAt(index));
+                index++;
+                if(index>=n){
                     break;
                 }
-                strs[j]+=s.charAt(index);
-                index++;
-            
             }
-            
         }
         
-        for(int k=1;k<numRows;k++){
-            strs[0]+=strs[k];
+        String res="";
+        for(StringBuilder sb:sbs){
+            res=res+sb.toString();
         }
         
-        return strs[0];
+        return res;
         
 
     }

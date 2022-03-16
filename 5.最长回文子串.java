@@ -1,40 +1,26 @@
-/*
- * @lc app=leetcode.cn id=5 lang=java
- *
- * [5] 最长回文子串
- */
-
-// @lc code=start
 class Solution {
     public String longestPalindrome(String s) {
-    
-        int length=s.length();
-        boolean[][] dp=new boolean[length][length];
         
-        int max_len=0;
-        int left_index=0;
-       
-       
-        for(int i=0;i<length;i++){
+        int n=s.length();
+        boolean[][] dp=new boolean[n][n];
+        int left=0;
+        int max=0;
+        for(int i=0;i<n;i++){
             for(int j=0;j<=i;j++){
                 if(i-j<2){
-                    dp[j][i]=s.charAt(i)==s.charAt(j);
+                    dp[j][i]=s.charAt(j)==s.charAt(i);
                 }else{
-                    dp[j][i]=dp[j+1][i-1]&&s.charAt(i)==s.charAt(j);
+                    dp[j][i]=dp[j+1][i-1]&&(s.charAt(j)==s.charAt(i));
                 }
                 
-                if(dp[j][i]&&i-j+1>max_len){
-                    max_len=i-j+1;
-                    left_index=j;
+                if(dp[j][i]&&i-j+1>max){
+                    max=i-j+1;
+                    left=j;
                 }
             }
         }
         
-        return s.substring(left_index,left_index+max_len);
-        
-        
+        return s.substring(left,left+max);
 
     }
 }
-// @lc code=end
-
