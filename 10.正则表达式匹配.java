@@ -33,40 +33,38 @@ class Solution {
 class Solution {
     public boolean isMatch(String s, String p) {
         
+        int m=s.length();
+        int n=p.length();
         
-        int len1=s.length();
-        int len2=p.length();
-        
-        boolean[][] dp=new boolean[len1+1][len2+1];
+        boolean[][] dp=new boolean[m+1][n+1];
         dp[0][0]=true;
         
-        //s为空，p不为空
-        for(int i=2;i<=len2;i++){
+        for(int i=2;i<=n;i++){
             if(p.charAt(i-1)=='*'){
                 dp[0][i]=dp[0][i-2];
             }
         }
         
-        for(int i=1;i<=len1;i++){
-            for(int j=1;j<=len2;j++){
-                char sc=s.charAt(i-1);
-                char pc=p.charAt(j-1);
-                if(sc==pc||pc=='.'){
+        
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                char c1=s.charAt(i-1);
+                char c2=p.charAt(j-1);
+                if(c1==c2){
                     dp[i][j]=dp[i-1][j-1];
-                }else if(pc=='*'){
+                }else if(c2=='.'){
+                    dp[i][j]=dp[i-1][j-1];
+                }else if(c2=='*'){
                     if(dp[i][j-2]){
                         dp[i][j]=true;
-                    }else if(sc==p.charAt(j-2)||p.charAt(j-2)=='.'){
+                    }else if(p.charAt(j-2)==c1||p.charAt(j-2)=='.'){
                         dp[i][j]=dp[i-1][j];
                     }
                 }
             }
         }
         
-        return dp[len1][len2];
-        
-        
-        
+        return dp[m][n];
 
     }
 }

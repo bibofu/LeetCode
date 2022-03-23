@@ -19,9 +19,7 @@
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
         
-        //优先队列，最小的放在最前面
         Queue<ListNode> queue=new PriorityQueue<>((o1,o2)->o1.val-o2.val);
-        
         for(ListNode node:lists){
             while(node!=null){
                 queue.offer(node);
@@ -29,13 +27,12 @@ class Solution {
             }
         }
         
-        ListNode dummy=new ListNode();
+        ListNode dummy=new ListNode(-1);
         ListNode cur=dummy;
-        
         while(!queue.isEmpty()){
-            cur.next=queue.poll();
+            ListNode pop=queue.poll();
+            cur.next=pop;
             cur=cur.next;
-            
             if(queue.isEmpty()){
                 cur.next=null;
             }

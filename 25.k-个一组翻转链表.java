@@ -31,23 +31,22 @@ class Solution {
         
         return newhead;
 
-    
-    
     }
     
-    public ListNode reverseK(ListNode begin,ListNode end){
+    
+    //长度为K的链表反转
+    public ListNode reverseK(ListNode head,ListNode end){
+        
         ListNode pre=null;
-        ListNode cur=begin;
+        ListNode cur=head;
         while(cur!=end){
             ListNode next=cur.next;
             cur.next=pre;
-            
             pre=cur;
             cur=next;
         }
         
         return pre;
-        
         
     }
 }

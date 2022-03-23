@@ -11,12 +11,12 @@ class Solution {
         if(s==null||s.length()<2){
             return 0;
         }
-        int res=0;
 
-        int length=s.length();
-        int[] dp=new int[length];// dp[i]：严格以i位置结尾，形成的有效括号子串最长长度是多少
+        int n=s.length();
+        int max=0;
+        int[] dp=new int[n];
 
-        for(int i=1;i<length;i++){
+        for(int i=1;i<n;i++){
             if(s.charAt(i)==')'){
                 int preLen=dp[i-1];
                 int pre=i-preLen-1;
@@ -24,16 +24,18 @@ class Solution {
                     dp[i]=dp[i-1]+2;
 
                     if(pre-1>=0){
-                       dp[i]+=dp[pre-1];
+                        dp[i]+=dp[pre-1];
                     }
                 }
+
                 
             }
-            res=Math.max(res,dp[i]);
+
+            max=Math.max(max,dp[i]);
 
         }
 
-        return res;
+        return max;
 
     }
 }

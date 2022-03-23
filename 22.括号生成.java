@@ -6,32 +6,30 @@
 
 // @lc code=start
 class Solution {
-    List<String> res=new ArrayList<>();
+    
+    List<String> res= new ArrayList<>();
     
     public List<String> generateParenthesis(int n) {
         
-        helper("",0,0,n);
+        helper(n,0,0,"");
         return res;
 
     }
     
-    public void helper(String s,int left,int right,int n){
-
+    public void helper(int n,int left,int right,String temp){
         if(left==n&&right==n){
-            res.add(s);          
+            res.add(new String(temp));
             return ;
         }
         
-        if(left>n){
-            return;
+        if(left>n||left<right){
+            return ;
         }
         
-        if(left<=right){
-            helper(s+'(',left+1,right,n);
-        }else{
-            helper(s+'(',left+1,right,n);
-            helper(s+')',left,right+1,n);
-        }
+        helper(n,left+1,right,temp+'(');
+        helper(n,left,right+1,temp+')');
+        
+        
     }
 }
 // @lc code=end
