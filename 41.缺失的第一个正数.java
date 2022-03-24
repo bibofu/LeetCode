@@ -8,13 +8,13 @@
 class Solution {
     public int firstMissingPositive(int[] nums) {
 
-        if(nums==null||nums.length==0){
+        if(nums==null||nums.length==1){
             return 1;
         }
+
         int containsOne=0;
         int n=nums.length;
-
-        //step 1
+        //step1
         for(int i=0;i<n;i++){
             if(nums[i]==1){
                 containsOne=1;
@@ -27,7 +27,7 @@ class Solution {
             return 1;
         }
 
-        //step 2
+        //step2
         for(int i=0;i<n;i++){
             int index=Math.abs(nums[i])-1;
             if(nums[index]>0){
@@ -35,7 +35,7 @@ class Solution {
             }
         }
 
-        //step 3
+        //step3
         for(int i=0;i<n;i++){
             if(nums[i]>0){
                 return i+1;
