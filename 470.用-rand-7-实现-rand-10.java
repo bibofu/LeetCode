@@ -13,14 +13,20 @@
 class Solution extends SolBase {
     public int rand10() {
 
-        int res=(rand7()-1)*7+rand7();
-        while(res>40){
-            res=(rand7()-1)*7+rand7();
+        int x=(rand7()-1)*7+rand7();
+
+        while(x>40){
+            x=(rand7()-1)*7+rand7();
         }
 
-        return res%10+1;
+        return x%10+1;
         
     }
 }
+//rand7     1 2 3 4 5 6 7
+//rand7-1   0 1 2 3 4 5 6
+//*7        0 7 14 21 28 35 42
+//+rand7
+
 // @lc code=end
 
