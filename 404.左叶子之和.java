@@ -24,6 +24,7 @@ class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         return root!=null?dfs(root):0;
     }
+    /* node为根节点的子树左叶子之和 */
     public int dfs(TreeNode node){
         int res = 0;
         if(node.left!=null){
