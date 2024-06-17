@@ -110,6 +110,33 @@ class Traversal{
     }
 
 /***************************************** =============================================  */
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        /** 层序遍历，使用队列来做 */
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        if(root == null){
+            return res;
+        }
+        queue.offer(root);
 
+        while(!queue.isEmpty()){
+            List<Integer> temp = new ArrayList<>();
+            int size = queue.size();
+            /** 表示一层 */
+            for(int i = 0;i<size;i++){
+                TreeNode node = queue.poll();
+                temp.add(node.val);
+                if(node.left!=null){
+                    queue.offer(node.left);
+                }
+                if(node.right!=null){
+                    queue.offer(node.right);
+                }   
+            }
+            
+            res.add(temp);
+        }
+        return res;
+    }
 
 }
