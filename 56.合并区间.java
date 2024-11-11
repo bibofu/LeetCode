@@ -7,35 +7,25 @@
 // @lc code=start
 class Solution {
     public int[][] merge(int[][] intervals) {
-        
-        if(intervals.length<=1){
+        if(intervals ==null||intervals.length <=1){
             return intervals;
         }
-        
-        Arrays.sort(intervals,(arr1,arr2)->Integer.compare(arr1[0],arr2[0]));
-        
-        List<int[]> res=new ArrayList<>();
-        
-        //intervals = [[1,3],[2,6],[8,10],[15,18]]
-        int[] current=intervals[0];
-        res.add(current);
-        
-        for(int[] interval:intervals){
-            int curbegin=current[0];
-            int curend=current[1];
-            int nextbegin=interval[0];
-            int nextend=interval[1];
-            if(curend>=nextbegin){
-                current[1]=Math.max(curend,nextend);
+        Arrays.sort(intervals,(o1,o2)->o1[0]-o2[0]);
+        List<int[]> res = new ArrayList<>();
+        int[] cur = intervals[0];
+
+        for(int i=1;i<intervals.length;i++){
+            int[] nums = intervals[i];
+            if(nums[0] > cur[1]){
+                res.add(cur);
+                cur = nums;
             }else{
-                current=interval;
-                res.add(interval);
+                cur[1] = Math.max(cur[1],nums[1]);
             }
         }
-        
-        return res.toArray(new int[res.size()][]);
-        
-        
+        res.add(cur);
+
+        return res.toArray(new int[res.size()][2]);
 
     }
 }

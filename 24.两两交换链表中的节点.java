@@ -21,16 +21,12 @@ class Solution {
         if(head==null||head.next==null){
             return head;
         }
-        
-      
-        
         ListNode next=head.next;
         ListNode newhead=next.next;
         next.next=head;
         head.next=swapPairs(newhead);
         
         return next;
-
     }
 }
 // @lc code=end

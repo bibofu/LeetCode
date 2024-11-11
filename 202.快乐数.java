@@ -6,30 +6,29 @@
 
 // @lc code=start
 class Solution {
-    
     // 如果不是快乐数，肯定会有循环
     public boolean isHappy(int n) {
-        
-        Set<Integer> set=new HashSet<>();
-        
+        Set<Integer> set = new HashSet<>();
         while(n!=1){
-            int sum=0;
-            int temp=n;
-            while(temp>0){
-                sum+=(temp%10)*(temp%10);
-                temp=temp/10;
-            }
-            
-            n=sum;
-            if(set.contains(n)){
+            int temp = helper(n);
+            if(!set.add(temp)){
                 return false;
             }
-            set.add(n);
+            n = temp;
         }
-        
+
         return true;
     }
-     
+
+    public int helper(int n){
+        int res = 0;
+        while(n>0){
+            int temp = n%10;
+            res+= temp*temp;
+            n=n/10;
+        }
+        return res;
+    }
 }
 // @lc code=end
 
